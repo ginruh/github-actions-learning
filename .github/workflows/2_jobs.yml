@@ -3,14 +3,18 @@ on: [push]
 jobs:
     job_1:
         runs-on: ubuntu-latest
+        outputs:
+            job_1_output: ${{ steps.set_output.outputs.JOB_1_OUTPUT }}
         steps:
             - uses: actions/checkout@v4
             - name: set variable
-              id: job_1_output
+              id: set_output
               run: echo "JOB_1_OUTPUT=Chintu World!" >> $GITHUB_ENV
     
     job_2:
         runs-on: ubuntu-latest
         needs: job_1
         steps:
-            - run: echo "${{ env.JOB_1_OUTPUT }}"
+            - run: echo "${{ env.TEST_VAR }}"
+              env:
+                TEST_VAR: ${{ needs.job_1.outputs.job_1_output }}
