@@ -1,0 +1,15 @@
+name: 2 Jobs communication
+jobs:
+    job_1:
+        runs-on: ubuntu-latest
+        outputs:
+            job_1_output: ${{ steps.set_variable.outputs.value }}
+        steps:
+            - id: set variable
+              run: echo "::set-output name=value::Hello, World!"
+    
+    job_2:
+        runs-on: ubuntu-latest
+        needs: job_1
+        steps:
+            - run: echo "${{ needs.job_1.outputs.my_variable }}"
