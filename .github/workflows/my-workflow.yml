@@ -1,0 +1,13 @@
+name: My First Workflow
+on: [push]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Run a script file
+              run: bash test.sh
+            - name: Run a multi-line script
+              run: |
+                    echo "This is my second GitHub Acitons workflow."
+                    echo "I'm learning how to automate tasks."
