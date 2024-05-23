@@ -6,7 +6,7 @@ jobs:
         outputs:
             job_1_output: ${{ steps.set_variable.outputs.value }}
         steps:
-            - id: set variable
+            - name: set variable
               run: echo "::set-output name=value::Hello, World!"
     
     job_2:
