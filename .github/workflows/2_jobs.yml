@@ -4,10 +4,10 @@ jobs:
     job_1:
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/checkout@v4
             - name: set variable
-              env:
-                  JOB_1_OUTPUT: Chintu World!
-              run: echo "The variable value is $JOB_1_OUTPUT"
+              id: job_1_output
+              run: echo "JOB_1_OUTPUT=Chintu World!" >> $GITHUB_ENV
     
     job_2:
         runs-on: ubuntu-latest
